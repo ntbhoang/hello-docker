@@ -1,0 +1,71 @@
+1- Creating Dockerfile:
+  1.1- Image:
+    - A cut-down OS
+    - Third-party libs
+    - Applicaton files
+    - Env vars
+  1.2- Container:
+    - Provide isolated env
+    - Can be stopped & restarted
+    - Is just a process
+  1.3- Steps:
+    - Install node
+    - npm install
+    - npm start
+  1.4- Dockerfile structure:
+    - FROM
+    - WORKDIR
+      - WORKDIR /app
+    - COPY:
+      # Copy a fiile - COPY package.json /app (if /app dir not exists, auto create one)
+      - COPY `file_name` `abs_path`
+      # Copy multiple files, note you have to speciy the dir with `/app/`
+      - COPY file1, file2 /app/ 
+      # COPY with reg-ex
+      - COPY package*.json /app/
+      # COPY everything from source dir to destiny dir
+      - COPY . /app/
+      # If we want to use relative path, use with the keyword `WORKDIR`: \app
+      - COPY . . # all files in source dir to the current destination dir (.)
+      # COPY a file that has a space in it, for example "hello world.txt"
+      - COPY ["hello world.txt", "."]
+    - ADD 
+      # Basically the same as COPY, unless in some scenarios:
+      # ADD file.zip - note it will auto uncompressed the file
+      # ADD an url
+      # Best practice is using COPY, only use ADD for 2 scenarios above
+    - RUN # execute linux commands
+      # Now, let say that we have excluded the node_modules dir, so we have to install it
+      - RUN npm install
+    - ENV # setting env vars
+      # Let say that our FE application needs to talk to the BE application
+      - ENV API_URL="https://api.myapp.com"
+    - EXPOSE 
+    - USER # Which user run application
+    - ENTRYPOINT 
+  1.5- Excluding Files and Dirs:
+    # For exaple, a no feature React-app could has the build size to 150 MB because of the node_modules
+    # Take a look at the nod_modules dirs, the size of the build context is large cause node_modules contains thousands of libs
+    # Sending these libs via the network from Docker client to Docker engine is an expensive action, we dont want that
+    # We dont want to copy the node_module dir, notice that all the dependencies are informed in the package.json file
+    # It has 2 benefits:
+      # 1- Our build context is smaller
+      # 2- Faster since we don't have to wait for these file to be transfered 
+    # For reference, look at the `gitignore` file in the dependencies section, the same concept apply here
+
+
+
+
+2- Versioning images:
+
+
+
+3- Sharing images:
+
+
+4- Saving and loading images:
+
+
+5- Reducing the image size:
+
+6- Speed up builds:

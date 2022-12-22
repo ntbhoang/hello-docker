@@ -1,0 +1,24 @@
+1- Build an image:
+  - docker build -t hello-docker .
+  # -t: tag name
+  # . current path
+
+2- Check for images:
+  - docker images
+  - docker image ls # for short 
+
+3- Build an image:
+  - docker build -t `tag_name` . 
+
+4- Run an image:
+  - docker run `image_name`
+
+5- Delete an image:
+  - docker rmi -f `image_name`
+
+6- Check for docker processes:
+  - docker ps 
+  - docker ps -a 
+
+7- Start a container (it = interactive mode):
+  - docker run -it unbutu

@@ -1,0 +1,132 @@
+1. We can go to `docker.hub.com` to search for Ubuntu container
+  - To download the container: docker pull ubuntu
+  - But we can also use: docker run ubuntu # Check if local does not have Unbutu, it will download one
+
+2. Packages Manager:
+  - Every OS system comes with a packages manager:
+    - NPM # Node
+    - YARN
+    - PIP # Python
+    - APT # Linux: advance packages tool
+
+  2.1 Install `nano`: 
+    - If we use: apt  install nano # E: Package 'nano' has no installation candidate
+    # apt list: to see list of installed packages in the current database
+    # This command looks at the packages database and cannot found `nano` package
+    - Use: apt update # to update list of packages - Now, we can install `nano`
+    - Remove: apt remove nano
+
+3. Linux Files System: Everything are files
+  /:
+    bin       root    # (bin: binaries or program - root: home dir for root user )
+    boot      lib     # (boot: files related to booting - lib: keeping lib files: software dependencies files)
+    dev       var     # (dev: devices - var: files that updated frequently)
+    etc       proc    # (etc: editable text configuration: configurations files - proc: files represents running processes )
+    home              # (home: each user will have a dir)
+
+4. Navigate the File System:
+  # Current  working dir: 
+  - pwd
+  # List dirs:
+  - ls
+  - ls -1 # List dir on each row
+  - ls -l # long listing - more details: show permission
+  - ls -a # list all
+  - cd `dir_name` 
+  - cd `etc/a` # we can tab twice to see list of dirs
+  # green: dir - white: file
+  - cd .. # go out 1 level
+  - cd ../.. # 2 level up
+  - cd ~ # goto home
+
+5. Maniplulate Files and Dirs:
+  # Change the name of a dir
+  - mv `original_name` `new_name` 
+  # Create multiple files
+  - touch file1.txt file2.txt file3.txt
+  # Move a file to other dir. Use `/` as root dir
+  - mv `file_name` /etc
+  # Rename files:
+  - mv `file_name` `new_file_name`
+  # Remove:
+  - rm `file_name` or rm file*
+  # Remove dirs:
+  - rm -r `dir_name`
+
+6. View and Edit files (use Nano editor):
+  # Create file: 
+  - nano `file_name`
+  # View file's content
+  - cat `file_name`
+  # View page by page
+  - more `file_name`
+  # install less
+  - apt install less
+  - less `file_name`  
+  # View n first lines:
+  - head -n 5 `file_name`
+  # View n last lines:
+  - tail -n 5 `file_name `
+
+7. Redirection:
+  # Read content of file1 to file2
+  - cat file1 > file2
+  # Write to another file
+  - cat file1.txt file2.txt > new_file
+  # write a single line to a file - dont need nano
+  - echo whatever `whatever_file `
+  # list all the dirs and write to a file
+  - ls -l `dir_name` > `file_name`
+
+8. Searching for texts:
+  # search for the word `hello` in file1.txt
+  - grep -i hello file1.txt file2.txt or file* # ignore case sensitive
+  # search text in a dir
+  - grep -i hello .
+
+9. Finding files and dirs:
+  # find files in a dir
+  - find `dir_name `
+  # only dirs
+  - find -type d
+  # find files start with f
+  - find -type f -name "f*"  
+
+  10. Chaining commands:
+  - mkdir `dir_name` && cd `dir_name` && echo 
+  - mkdir `dir_name` || echo "directory exists"
+
+  11. Environment variables:
+  # view env vars 
+  - printenv
+  # view path vars
+  - printenv PATH
+  # set a var
+  - export DB_USER=hoangntb   # only available in the current terminal session
+  # echo var
+  - echo $PATH
+  # add permanent var
+  - echo DB_USER=hoangntb >> .zshrc # only append , 1 > overwrite
+
+  12. Managing users:
+  
+  13. Manage group:
+
+  14. File Permissions:
+  # d: dir
+  # -: file
+  # 1st group is for root user: rw- (read-write-no execute)
+  # 2nd group is for the group that own the file
+  # 3rd group is permission for everyone eles
+  # execute the file
+  - chmod u+x `file_name `  # (user and execute)
+  # enable execute for other
+  - chmod o+x 
+  # 
+  - chmod og+x+w-r *.sh
+
+  
+
+
+
+
