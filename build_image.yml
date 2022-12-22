@@ -37,11 +37,15 @@
     - RUN # execute linux commands
       # Now, let say that we have excluded the node_modules dir, so we have to install it
       - RUN npm install
+      - RUN app group app && adduser -S -G app app
     - ENV # setting env vars
       # Let say that our FE application needs to talk to the BE application
       - ENV API_URL="https://api.myapp.com"
     - EXPOSE 
+      # If the app run on a specific port, we will need to use the EXPOSE to map a port from host to the container
+      - EXPOSE 3000
     - USER # Which user run application
+      - USER app
     - ENTRYPOINT 
   1.5- Excluding Files and Dirs:
     # For exaple, a no feature React-app could has the build size to 150 MB because of the node_modules
@@ -52,6 +56,10 @@
       # 1- Our build context is smaller
       # 2- Faster since we don't have to wait for these file to be transfered 
     # For reference, look at the `gitignore` file in the dependencies section, the same concept apply here
+  1.6- Setting the Users:
+    # When we run an app, we dont want to run with the root user - it's bout the security risk
+    # Therefore we need to create a user/group with limited permission for running the app
+
 
 
 

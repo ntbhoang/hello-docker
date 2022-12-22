@@ -10,7 +10,7 @@
     - APT # Linux: advance packages tool
 
   2.1 Install `nano`: 
-    - If we use: apt  install nano # E: Package 'nano' has no installation candidate
+    - If we use: apt install nano # E: Package 'nano' has no installation candidate
     # apt list: to see list of installed packages in the current database
     # This command looks at the packages database and cannot found `nano` package
     - Use: apt update # to update list of packages - Now, we can install `nano`
@@ -109,8 +109,11 @@
   - echo DB_USER=hoangntb >> .zshrc # only append , 1 > overwrite
 
   12. Managing users:
+    - adduser -S -G app 
+    - whoami   # check who is the current user
   
   13. Manage group:
+    - addgroup app
 
   14. File Permissions:
   # d: dir
@@ -124,6 +127,9 @@
   - chmod o+x 
   # 
   - chmod og+x+w-r *.sh
+  # Node.js and alpine 16 and later, cannot npm install since the package.json file belong to root user and group
+  # We have to use chown command to force the package.json back to the curent user
+  - --chown=app:app package*.json
 
   
 
